@@ -15,7 +15,7 @@ def get_hyp_waveform(m1,m2,et0,b,ti,tf,delta_t,inc,distance,order):
     eta=m1*m2/M**2
     time=M*tsun
     dis=M*dsun
-    scale=R/dis
+    scale=distance/dis
     x0=get_x(et0,eta,b,3)[0]
     n0=x0**(3/2)
     tarr=np.arange(ti,tf,delta_t)
