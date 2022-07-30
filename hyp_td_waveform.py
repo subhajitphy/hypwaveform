@@ -7,6 +7,10 @@ from getx_v2 import get_x, get_x_PN
 from fn import rx, phitx, phiv, rtx
 from hypmik3pn import get_u, get_u_v2
 
+
+from pycbc.types import TimeSeries
+
+
 Mpc=1e6*pc
 
 
@@ -44,6 +48,8 @@ def get_hyp_waveform(m1,m2,et0,b,ti,tf,delta_t,inc,distance,order):
         hp_arr[i]=(-eta*(sin(inc)**2*(z-r1**2*phit**2-rt**2)+(1+cos(inc)**2)*((z
         +r1**2*phit**2-rt**2)*cos(2*phi)+2*r1*rt*phit*sin(2*phi))))
         hx_arr[i]=(-2*eta*cos(inc)*((z+r1**2*phit**2-rt**2)*sin(2*phi)-2*r1*rt*phit*cos(2*phi)))
-    return tarr,hp_arr/scale , hx_arr/scale
+    Hp=TimeSeries(hp_arr/scale, delta_t=delta_t, epoch=ti)
+    Hx=TimeSeries(hx_arr/scale, delta_t=delta_t, epoch=ti)
+    return Hp,Hx
 
     
