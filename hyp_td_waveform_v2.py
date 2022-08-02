@@ -14,15 +14,15 @@ from pycbc.types import TimeSeries
 Mpc=1e6*pc
 
 
-def get_hyp_waveform(m1,m2,et0,b,ti,tf,delta_t,inc,distance,order):
-    M=m1+m2
-    eta=m1*m2/M**2
+def get_hyp_waveform(M,q,et0,b,delta_t,inc,distance,order):
+    ti=M/100
+    eta=q/(1+q)**2
     time=M*tsun
     dis=M*dsun
     scale=distance/dis
     x0=get_x(et0,eta,b,3)[0]
     n0=x0**(3/2)
-    tarr=np.arange(ti,tf,delta_t)
+    tarr=np.arange(-ti,ti,delta_t)
     t_arr=tarr/time
     t_i=t_arr[0]
     t_f=t_arr[len(t_arr)-1]
@@ -48,8 +48,8 @@ def get_hyp_waveform(m1,m2,et0,b,ti,tf,delta_t,inc,distance,order):
         hp_arr[i]=(-eta*(sin(inc)**2*(z-r1**2*phit**2-rt**2)+(1+cos(inc)**2)*((z
         +r1**2*phit**2-rt**2)*cos(2*phi)+2*r1*rt*phit*sin(2*phi))))
         hx_arr[i]=(-2*eta*cos(inc)*((z+r1**2*phit**2-rt**2)*sin(2*phi)-2*r1*rt*phit*cos(2*phi)))
-    Hp=TimeSeries(hp_arr/scale, delta_t=delta_t, epoch=ti)
-    Hx=TimeSeries(hx_arr/scale, delta_t=delta_t, epoch=ti)
+    Hp=TimeSeries(hp_arr/scale, delta_t=delta_t, epoch=-ti)
+    Hx=TimeSeries(hx_arr/scale, delta_t=delta_t, epoch=-ti)
     return Hp-Hp[0],Hx-Hx[0]
 
     
