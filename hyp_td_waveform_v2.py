@@ -14,8 +14,12 @@ from pycbc.types import TimeSeries
 Mpc=1e6*pc
 
 
-def get_hyp_waveform(M,q,et0,b,delta_t,inc,distance,order,rr='None',estimatepeak='None'):
-    ti=M/100
+def get_hyp_waveform(M,q,et0,b,delta_t,inc,distance,order,tscale='None',rr='None',estimatepeak='None'):
+    if tscale='None':
+        ti=M/100
+    else:
+        ti=M/tscale
+    
     eta=q/(1+q)**2
     time=M*tsun
     dis=M*dsun
