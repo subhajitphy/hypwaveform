@@ -24,7 +24,7 @@ def Fomg(eta,b1,e,omg):
 def get_max(eta,b1,e1):
     x0=get_x(e1,eta,b1,0)[0]
     n=x0**(3/2)
-    val=optimize.fmin(lambda omg:-Fomg(eta,b1,e1,omg),n,  xtol=1e-10, ftol=1e-10)[0]
+    val=optimize.fmin(lambda omg:-Fomg(eta,b1,e1,omg),n,  xtol=1e-10, ftol=1e-10,disp= False)[0]
     return val
 
 
