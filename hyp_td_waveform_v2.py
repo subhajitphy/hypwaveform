@@ -15,7 +15,7 @@ Mpc=1e6*pc
 
 
 def get_hyp_waveform(M,q,et0,b,delta_t,inc,distance,order,tscale='None',rr='None',estimatepeak='None'):
-    if tscale='None':
+    if tscale=='None':
         ti=M/100
     else:
         ti=M/tscale
@@ -75,8 +75,3 @@ def get_hyp_waveform(M,q,et0,b,delta_t,inc,distance,order,tscale='None',rr='None
         return Hp-Hp[0],Hx-Hx[0], X, Y, peak
     else:
         return Hp-Hp[0],Hx-Hx[0]
-        
-    
-    
-
-    
